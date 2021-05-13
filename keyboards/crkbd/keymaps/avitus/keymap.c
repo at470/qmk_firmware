@@ -25,12 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // MO - momentary shift
 
 // edit 13th may 2021
-// define the layer names and OLED screen scroll
+// define the layer names
 #define _BASE 0
 #define _NUM1 1
 #define _SYM2 2
 #define _FNC3 3
-#define OLED_SCROLL_TIMEOUT 10
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base Layer
@@ -137,28 +136,31 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
+/*
 #define L_BASE 0
 #define L_LOWER 2
 #define L_RAISE 4
 #define L_ADJUST 8
+*/
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
-    switch (layer_state) {
-        case L_BASE:
+    
+    switch (get_highest_layer(layer_state)) {
+        case _BASE:
             oled_write_ln_P(PSTR("BASE"), false);
             break;
-        case L_LOWER:
-            oled_write_ln_P(PSTR("1"), false);
+        case _NUM1:
+            oled_write_ln_P(PSTR("1 NUM"), false);
             break;
-        case L_RAISE:
-            oled_write_ln_P(PSTR("2"), false);
+        case _SYM2:
+            oled_write_ln_P(PSTR("2 SYMB"), false);
             break;
-        case L_ADJUST:
-        case L_ADJUST|L_LOWER:
-        case L_ADJUST|L_RAISE:
-        case L_ADJUST|L_LOWER|L_RAISE:
-            oled_write_ln_P(PSTR("3"), false);
+        case _FNC3:
+            oled_write_ln_P(PSTR("3 FUNC"), false);
+            break;
+        default:
+            oled_write_ln_P(PSTR("Undefined"), false);
             break;
     }
 }
@@ -222,7 +224,7 @@ void oled_task_user(void) {
         oled_render_keylog();
     } else {
         oled_render_logo(); //let's comment this out and see, expect to remove the logo
-        oled_render_layer_state();
+//        oled_render_layer_state();
 //      oled_render_keylog();
     }
 }
