@@ -142,7 +142,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 void oled_render_layer_state(void) {
-    oled_write_P(PSTR("Layer: "), false);
+    oled_write_P(PSTR("Layer Now: "), false);
     
     switch (get_highest_layer(layer_state)) {
         case _BASE:
@@ -167,6 +167,8 @@ void oled_render_layer_state(void) {
 char keylog_str[24] = {};
 
 const char code_to_name[208] = {
+// this file contains what is displayed on OLED on simple keypresses
+// uses Usage ID, also visible in Karabiner
   #include "keycodes.h" 
 };
 
