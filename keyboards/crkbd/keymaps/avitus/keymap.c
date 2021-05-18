@@ -136,13 +136,6 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
-/*
-#define L_BASE 0
-#define L_LOWER 2
-#define L_RAISE 4
-#define L_ADJUST 8
-*/
-
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
     
@@ -168,26 +161,34 @@ void oled_render_layer_state(void) {
 
 char keylog_str[24] = {};
 
-const char code_to_name[60] = {
-    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
-    'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-    'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
-    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
+const char code_to_name[208] = {
+  #include "keycodes.h" 
+};
 
 void set_keylog(uint16_t keycode, keyrecord_t *record) {
-  char name = ' ';
-    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
-        (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { keycode = keycode & 0xFF; }
-  if (keycode < 60) {
-    name = code_to_name[keycode];
-  }
+    char name = ' ';
 
-  // update keylog
-  snprintf(keylog_str, sizeof(keylog_str), "%dx%d, k%2d : %c",
-           record->event.key.row, record->event.key.col,
-           keycode, name);
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
+        (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX))
+    {
+        keycode = keycode & 0xFF;
+    }
+
+    if (keycode < 208)
+    {
+        name = code_to_name[keycode];
+    }
+
+    // update keylog
+    snprintf(
+        keylog_str,
+        sizeof(keylog_str),
+        "%dx%d, k%2d : %c",
+        record->event.key.row,
+        record->event.key.col,
+        keycode,
+        name
+    );
 }
 
 void oled_render_keylog(void) {
@@ -223,9 +224,7 @@ void oled_task_user(void) {
         oled_render_layer_state();
         oled_render_keylog();
     } else {
-        oled_render_logo(); //let's comment this out and see, expect to remove the logo
-//        oled_render_layer_state();
-//      oled_render_keylog();
+        oled_render_logo();
     }
 }
 
