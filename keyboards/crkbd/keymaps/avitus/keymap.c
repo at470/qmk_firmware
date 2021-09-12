@@ -29,19 +29,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _BASE 0
 #define _NUM1 1
 #define _SYM2 2
-#define _FNC3 3
+#define _LAY3 3
+#define _LAY4 4
+#define _LAY5 5
+#define _LAY6 6
+#define _LAY7 7
+#define _LAY8 8
+#define _LAY9 9
+#define _LAY10 10
+#define _LAY11 11
+#define _LAY12 12
+#define _LAY13 13
+#define _LAY14 14
+#define _LAY15 15
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base Layer
-   *,-----------------------------------------.                 ,-----------------------------------------.
-   *| GESC |   Q  |   W  |   E  |   R  |   T  |                 |   Y  |   U  |   I  |   O  |   P  | Bksp |
-   *|------+------+------+------+------+------|                 |------+------+------+------+------+------|
-   *| LCMD |   A  |   S  |   D  |   F  |   G  |                 |   H  |   J  |   K  |   L  |; / : |' / " |
-   *|------+------+------+------+------+------+                 +------+------+------+------+------+------|
-   *| Shift|   Z  |   X  |   C  |   V  |   B  |                 |   N  |   M  |   ,  |   .  |   /  |Shift |
-   *|------+------+------+------+------+------+------.    ,-----+------+------+------+------+------+------|
-   *                            | TG2  | TG1  | Ent  |    |Space|   !  | TG3  |
-   *                            `---------------------    --------------------'
+   *,--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
+   *|  GESC  |    Q   |    W   |    E   |    R   |    T   |                    |    Y   |    U   |    I   |    O   |    P   |  Bksp  |
+   *|--------+--------+--------+--------+--------+--------+                    |--------+--------+--------+--------+--------+--------+
+   *|  LCMD  |    A   |    S   |    D   |    F   |    G   |                    |    H   |    J   |    K   |    L   | ; / :  | ' / "  |
+   *|--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
+   *|  Shift |    Z   |    X   |    C   |    V   |    B   |                    |    N   |    M   |    ,   |    .   |    /   |  Shift |
+   *|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+   *                                    |  TG(2) |  TG(1) | KC_ENT |  | KC_SPC |    !   |  TG(3) |
+   *                                    +--------------------------+  +--------------------------'
    */
 //  [0] = LAYOUT_split_3x6_3( // original
     [_BASE] = LAYOUT_split_3x6_3(
@@ -60,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *,--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
    *|  TAB   |    1   |    2   |    3   |    4   |    5   |                    |    6   |    7   |    8   |    9   |    0   |  Bksp  |
    *|--------+--------+--------+--------+--------+--------+                    |--------+--------+--------+--------+--------+--------+
-   *|  LCMD  |    *   |    @   |    !   |        |        |                    |        |  LEFT  |   UP   |  RIGHT | ; / :  | ' / "  |
+   *|  LCMD  |    *   |    @   |    ?   |    -   |        |                    |        |  LEFT  |   UP   |  RIGHT | ; / :  | ' / "  |
    *|--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
    *|  Shift |        |        |        |        |        |                    |    £   |        |  DOWN  |    .   |    ?   |  Shift |
    *|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -74,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LGUI, KC_ASTR,   KC_AT, KC_EXLM, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_LEFT,   KC_UP,KC_RIGHT, _______, _______,
+      KC_LGUI, KC_ASTR,   KC_AT, KC_QUES, KC_MINS, XXXXXXX,                      XXXXXXX, KC_LEFT,   KC_UP,KC_RIGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HASH, XXXXXXX, KC_DOWN, _______, KC_QUES, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -108,28 +121,171 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Layer 3 - FN
    *,--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
-   *|  RESET |  UNDO  |        |        |        |   CUT  |                    |   DEL  |        |   UP   |        |        |  Bksp  |
+   *|  RESET |L_1:NUM |L_2:SYMB|        |L_4:*+-/|L_5:()  |                    |        |        |   UP   |        |        |  Bksp  |
    *|--------+--------+--------+--------+--------+--------+                    |--------+--------+--------+--------+--------+--------+
-   *|  LCMD  |  LCTRL |        |        |        |  COPY  |                    |        |  LEFT  |  DOWN  |  RIGHT |        |        |
+   *|  LCMD  |L_6:    |L_7:    |L_8:    |L_9:    |L_10:   |                    |        |  LEFT  |  DOWN  |  RIGHT |        |        |
    *|--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
-   *|  Shift |  CAPS  |        |        |        |  PASTE |                    |        |        |        |        |        |  GESC  |
+   *|  Shift |L_11:   |L_12:   |L_13:   |L_14:   |L_15:   |                    |        |        |        |        |        |        |
    *|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-   *                                    |  TG(2) | LAYER_2| KC_ENT |  | KC_SPC |  R ALT |  BASE  |
+   *                                    |  TG(2) | LAYER_2| KC_ENT |  | KC_SPC |        |  BASE  |
    *                                    +--------------------------+  +--------------------------'
    */
 //  [3] = LAYOUT_split_3x6_3(
-    [_FNC3] = LAYOUT_split_3x6_3(
+    [_LAY3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        RESET, KC_UNDO, XXXXXXX, XXXXXXX, XXXXXXX,  KC_CUT,                       KC_DEL, XXXXXXX,   KC_UP, XXXXXXX, XXXXXXX, _______,
+        RESET, XXXXXXX, XXXXXXX, XXXXXXX,   TG(4),   TG(5),                      XXXXXXX, XXXXXXX,   KC_UP, XXXXXXX, XXXXXXX, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, KC_COPY,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, XXXXXXX,
+      _______,   TG(6),   TG(7),   TG(8),   TG(9),  TG(10),                      XXXXXXX, KC_RGHT, KC_DOWN, KC_LEFT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSTE,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_GESC,
+      _______,  TG(11),  TG(12),  TG(13),  TG(14),  TG(15),                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______,  KC_ENT,     KC_SPC, KC_RALT, _______
+                                          _______, _______, _______,    _______, _______, _______
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY4] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX,                      XXXXXXX, KC_MINS, KC_PLUS,  KC_EQL, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_ASTR, KC_SLSH, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY5] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,                      XXXXXXX, KC_LPRN, KC_RPRN, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_LCBR, KC_RCBR, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY6] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY7] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY8] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY9] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,    KC_1,    KC_2,    KC_3, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX,                      XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,    KC_7,    KC_8,    KC_9,    KC_0,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY10] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY11] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY12] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY13] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY14] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_LAY15] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, _______, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   )
-
 };
 
 // FOR OLED SCREENS
@@ -142,7 +298,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 void oled_render_layer_state(void) {
-    oled_write_P(PSTR("Layer Now: "), false);
+    oled_write_P(PSTR("Now: "), false);
     
     switch (get_highest_layer(layer_state)) {
         case _BASE:
@@ -154,8 +310,44 @@ void oled_render_layer_state(void) {
         case _SYM2:
             oled_write_ln_P(PSTR("2 SYMB"), false);
             break;
-        case _FNC3:
-            oled_write_ln_P(PSTR("3 FUNC"), false);
+        case _LAY3:
+            oled_write_ln_P(PSTR("3 LAYERS"), false);
+            break;
+        case _LAY4:
+            oled_write_ln_P(PSTR("4 OPERATIONS"), false);
+            break;
+        case _LAY5:
+            oled_write_ln_P(PSTR("5 PARENTHESIS"), false);
+            break;
+        case _LAY6:
+            oled_write_ln_P(PSTR("6 empty"), false);
+            break;
+        case _LAY7:
+            oled_write_ln_P(PSTR("7 empty"), false);
+            break;
+        case _LAY8:
+            oled_write_ln_P(PSTR("8 empty"), false);
+            break;
+        case _LAY9:
+            oled_write_ln_P(PSTR("9 R_NUM"), false);
+            break;
+        case _LAY10:
+            oled_write_ln_P(PSTR("10 empty"), false);
+            break;
+        case _LAY11:
+            oled_write_ln_P(PSTR("11 empty"), false);
+            break;
+        case _LAY12:
+            oled_write_ln_P(PSTR("12 empty"), false);
+            break;
+        case _LAY13:
+            oled_write_ln_P(PSTR("13 empty"), false);
+            break;
+        case _LAY14:
+            oled_write_ln_P(PSTR("14 empty"), false);
+            break;
+        case _LAY15:
+            oled_write_ln_P(PSTR("15 empty"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undefined"), false);
