@@ -387,10 +387,10 @@ void oled_render_layer_state(void) {
             oled_write_ln_P(PSTR("10 empty"), false);
             break;
         case _LAY11:
-            oled_write_ln_P(PSTR("11 empty"), false);
+            oled_write_ln_P(PSTR("11 Numbers"), false);
             break;
         case _LAY12:
-            oled_write_ln_P(PSTR("12 empty"), false);
+            oled_write_ln_P(PSTR("12 Symbols"), false);
             break;
         case _LAY13:
             oled_write_ln_P(PSTR("13 empty"), false);
