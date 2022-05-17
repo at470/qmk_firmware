@@ -37,17 +37,17 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 [qmk.fm](https://qmk.fm) is the official website of QMK, where you can find links to this page, the documentation, and the keyboards supported by QMK.
 
 
-## AT personal notes
+## AT personal noob notes
 -- after setting up ssh
-git clone git@github.com:at470/qmk_firmware.git
+* git clone git@github.com:at470/qmk_firmware.git
 
 -- run this to make sure qmk will compile
-make git-submodule
+* make git-submodule
 
-qmk compile
+* qmk compile
 
 -- push changes into github
 -- in qmk_firmware directory
-git add .
-git commit -m 'update left screen display text'
-git push
+* git add .
+* git commit -m 'update left screen display text'
+* git push
