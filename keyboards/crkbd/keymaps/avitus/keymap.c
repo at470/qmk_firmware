@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *|--------+--------+--------+--------+--------+--------+                    |--------+--------+--------+--------+--------+--------+
    *|  LCMD  |    *   |    @   |    ?   |    -   |        |                    |        |  LEFT  |        |  RIGHT | ; / :  | ' / "  |
    *|--------+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+--------|
-   *|  Shift |        |        |        |        |        |                    |    £   |        |    ,   |    .   |    ?   |  Shift |
+   *|  Shift |        |        |        |        |        |                    |    £   |        |    ,   |    .   |    /   |  Shift |
    *|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
    *                                    |  TG(2) |  BASE  | KC_ENT |  | KC_SPC |  R Alt |  TG(3) |
    *                                    +--------------------------+  +--------------------------'
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LGUI, KC_ASTR,   KC_AT, KC_QUES, KC_MINS, XXXXXXX,                      XXXXXXX, KC_LEFT, XXXXXXX,KC_RIGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HASH, XXXXXXX, _______, _______, KC_QUES, _______,
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HASH, XXXXXXX, _______, _______, KC_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, KC_RALT,    TG(3)
                                       //`--------------------------'  `--------------------------'
@@ -351,7 +351,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Now: "), false);
-    
+
     switch (get_highest_layer(layer_state)) {
         case _BASE:
             oled_write_ln_P(PSTR("BASE"), false);
@@ -413,7 +413,7 @@ char keylog_str[24] = {};
 const char code_to_name[208] = {
 // this file contains what is displayed on OLED on simple keypresses
 // uses Usage ID, also visible in Karabiner
-  #include "keycodes.h" 
+  #include "keycodes.h"
 };
 
 void set_keylog(uint16_t keycode, keyrecord_t *record) {
